@@ -1,0 +1,17 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.env
+.DS_Store
+data/raw/*.csv
+data/raw/*.zip
+*.db
+*.duckdb
+.ipynb_checkpoints/
+node_modules/
+.next/
+*.egg-info/
+dist/
+build/
+.modal/
