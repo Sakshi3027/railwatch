@@ -1,0 +1,17 @@
+feature,mean_shap
+slow_orders_ratio,0.35030445
+fti_ratio,0.34019914
+mechanical_ratio,0.33603486
+weather_ratio,0.30877244
+passenger_ratio,0.25550625
+month,0.24070594
+train_miles_10k,0.2094204
+fti_per_10k,0.20575796
+year,0.19906922
+route_encoded,0.15740767
+is_summer,0.06443466
+is_winter,0.052575726
+delay_severity,0.018168492
+host_rr_encoded,0.007930558
+is_freight_rr,0.00038268516
+is_long_distance,0.00021728304
