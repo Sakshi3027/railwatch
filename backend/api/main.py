@@ -235,3 +235,40 @@ async def run_agent():
         "escalations": result["escalations"],
         "anomalies": result["anomalies"],
     }
+
+
+# ── Live train positions (Amtrak GTFS-RT) ─────────────────────────────────────
+
+@app.get("/api/trains/live")
+async def get_live_trains():
+    import httpx
+    import json
+
+    try:
+        async with httpx.AsyncClient(timeout=10) as client:
+            response = await client.get(
+                "https://api.amtrak.com/rtt/public/utility/trainlocations/json/all",
+                headers={"User-Agent": "Mozilla/5.0"}
+            )
+            if response.status_code == 200:
+                return response.json()
+    except Exception:
+        pass
+
+    trains = [
+        {"train_num": "3", "route": "Southwest Chief", "lat": 35.0844, "lon": -106.6504, "status": "Late", "delay_min": 145, "host_rr": "BNSF", "speed": 62},
+        {"train_num": "4", "route": "Southwest Chief", "lat": 34.0522, "lon": -118.2437, "status": "On Time", "delay_min": 0, "host_rr": "BNSF", "speed": 78},
+        {"train_num": "5", "route": "California Zephyr", "lat": 41.2565, "lon": -95.9345, "status": "Late", "delay_min": 210, "host_rr": "UP", "speed": 55},
+        {"train_num": "6", "route": "California Zephyr", "lat": 39.7392, "lon": -104.9903, "status": "Late", "delay_min": 88, "host_rr": "UP", "speed": 70},
+        {"train_num": "7", "route": "Empire Builder", "lat": 47.6062, "lon": -122.3321, "status": "On Time", "delay_min": 0, "host_rr": "BNSF", "speed": 85},
+        {"train_num": "8", "route": "Empire Builder", "lat": 46.8772, "lon": -96.7898, "status": "Late", "delay_min": 320, "host_rr": "BNSF", "speed": 48},
+        {"train_num": "11", "route": "Coast Starlight", "lat": 37.7749, "lon": -122.4194, "status": "Late", "delay_min": 175, "host_rr": "UP", "speed": 60},
+        {"train_num": "14", "route": "Coast Starlight", "lat": 45.5051, "lon": -122.6750, "status": "On Time", "delay_min": 12, "host_rr": "UP", "speed": 72},
+        {"train_num": "21", "route": "Texas Eagle", "lat": 32.7767, "lon": -96.7970, "status": "Late", "delay_min": 95, "host_rr": "UP", "speed": 65},
+        {"train_num": "30", "route": "Capitol Limited", "lat": 41.8781, "lon": -87.6298, "status": "On Time", "delay_min": 5, "host_rr": "CSX", "speed": 80},
+        {"train_num": "48", "route": "Lake Shore Limited", "lat": 42.3601, "lon": -71.0589, "status": "Late", "delay_min": 55, "host_rr": "CSX", "speed": 68},
+        {"train_num": "91", "route": "Silver Star", "lat": 25.7617, "lon": -80.1918, "status": "On Time", "delay_min": 0, "host_rr": "CSX", "speed": 90},
+        {"train_num": "188", "route": "Acela", "lat": 40.7128, "lon": -74.0060, "status": "On Time", "delay_min": 3, "host_rr": "Amtrak", "speed": 120},
+        {"train_num": "2150", "route": "NE Regional", "lat": 38.9072, "lon": -77.0369, "status": "On Time", "delay_min": 8, "host_rr": "Amtrak", "speed": 95},
+    ]
+    return {"trains": trains, "source": "sample"}

@@ -1,4 +1,5 @@
 "use client";
+import "leaflet/dist/leaflet.css";
 import { useEffect, useState } from "react";
 import { fetchKPIs, fetchScorecard, fetchRoutes, fetchTrend, fetchFeatureImportance } from "@/lib/api";
 import {
@@ -6,6 +7,8 @@ import {
   LineChart, Line, CartesianGrid,
 } from "recharts";
 import { Train, AlertTriangle, TrendingUp, Activity, Bot, ChevronRight } from "lucide-react";
+import dynamic from "next/dynamic";
+const TrainMap = dynamic(() => import("./components/TrainMap"), { ssr: false });
 
 const GRADE_COLOR: Record<string, string> = {
   A: "#1D9E75", B: "#639922", C: "#BA7517", D: "#D85A30", F: "#E24B4A",
@@ -177,6 +180,8 @@ export default function Dashboard() {
             </table>
           </div>
         </div>
+
+        <TrainMap />
 
         {(briefing || agentLoading) && (
           <div className="grid grid-cols-3 gap-4">
