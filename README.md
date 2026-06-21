@@ -1,4 +1,4 @@
-# RailWatch 🚆
+# RailWatch
 
 Freight interference accountability intelligence system for Amtrak passenger rail.
 

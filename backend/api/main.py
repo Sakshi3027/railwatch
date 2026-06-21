@@ -212,3 +212,26 @@ def predict(req: PredictRequest):
             for cls, p in zip(target_encoder.classes_, proba)
         }
     }
+
+
+# ── Agent endpoint ────────────────────────────────────────────────────────────
+
+@app.post("/api/agent/briefing")
+async def run_agent():
+    import sys
+    sys.path.insert(0, ".")
+    from agent.railwatch_agent import build_agent
+    agent = build_agent()
+    result = agent.invoke({
+        "scorecard": "",
+        "routes": "",
+        "trend_summary": "",
+        "anomalies": [],
+        "briefing": "",
+        "escalations": [],
+    })
+    return {
+        "briefing": result["briefing"],
+        "escalations": result["escalations"],
+        "anomalies": result["anomalies"],
+    }
