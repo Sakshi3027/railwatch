@@ -55,7 +55,7 @@ export default function Dashboard() {
     setEscalations([]);
     setAnomalies([]);
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/agent/briefing", { method: "POST" });
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000"}/api/agent/briefing`, { method: "POST" });
       const data = await res.json();
       setBriefing(data.briefing);
       setEscalations(data.escalations);

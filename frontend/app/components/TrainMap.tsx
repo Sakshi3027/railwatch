@@ -23,7 +23,7 @@ export default function TrainMap() {
 
   async function fetchTrains() {
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/trains/live");
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000"}/api/trains/live`);
       const data = await res.json();
       const list: Train[] = data.trains || data;
       setTrains(list);
