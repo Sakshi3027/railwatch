@@ -8,6 +8,17 @@ Freight interference accountability intelligence system for Amtrak passenger rai
 - **API**: https://railwatch-api.onrender.com/docs
 - **GitHub**: https://github.com/Sakshi3027/railwatch
 
+## Screenshots
+
+### Analytics Dashboard
+![RailWatch Dashboard](assets/dashboard.png)
+
+### Live Train Map
+![Live Train Map](assets/map.png)
+
+### AI Intelligence Briefing
+![AI Briefing](assets/briefing.png)
+
 ## The Problem
 
 Freight train interference caused 850,000 minutes of delay to Amtrak passengers in 2024. Host railroads are legally required to give Amtrak preference under the Rail Passenger Service Act — but violations are hard to detect, attribute, and escalate at scale.
